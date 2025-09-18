@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "target": "es2016",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./build",
+    "rootDir": "./src",
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/types",
+      "./types"
+    ],
+    "types": ["node", "jest"],
+    "moduleResolution": "node",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@apps/*": ["/src/apps/*"],
+      "@core/*": ["./src/core/*"],
+      "@types/*": ["./src/types/*"],
+      "@helpers/*": ["./src/helpers/*"],
+      "@DDD/*": ["./src/DDD/*"],
+      "@templates/*": ["/src/templates/*"],
+    }
+  },
+  "include": ["src/**/*.ts", "src/types/**/*.d.ts", "src/types/global.d.ts", "src/**/*.spec.ts", "tests/setup.ts"],
+  "exclude": ["node_modules", "dist"]
+}
