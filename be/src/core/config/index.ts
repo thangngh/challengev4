@@ -103,21 +103,21 @@ export class ConfigService {
       },
       mail: {
         host:
-          process.env.NODE_ENV === 'production'
+          process.env.NODE_ENV !== 'production'
             ? process.env.SMTP_HOST || ''
             : process.env.MAILDEV_HOST || 'localhost',
         port: parseInt(
-          process.env.NODE_ENV === 'production'
+          process.env.NODE_ENV !== 'production'
             ? process.env.SMTP_PORT || '587'
             : process.env.MAILDEV_PORT || '1025',
           10,
         ),
         user:
-          process.env.NODE_ENV === 'production'
+          process.env.NODE_ENV !== 'production'
             ? process.env.SMTP_USER || ''
             : '',
         pass:
-          process.env.NODE_ENV === 'production'
+          process.env.NODE_ENV !== 'production'
             ? process.env.SMTP_PASS || ''
             : '',
         from: process.env.FROM_EMAIL || 'no-reply@myapp.com',

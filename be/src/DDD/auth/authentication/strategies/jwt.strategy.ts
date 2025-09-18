@@ -70,24 +70,11 @@ class JwtStrategy {
     }
   }
 
-  public async verifyAccessToken(req: Request, res: Response, next: NextFunction) {
-    if (!req.headers['authorization']) {
-      return res.status(401)
-        .json({
-          code: 'UNAUTHORIZED',
-          message: 'No authorization header provided'
-        })
-    }
-
-    const authHeader = req.headers['authorization'];
-    const bearerToken = authHeader.split(' ');
-    const token = bearerToken[1];
-
+  public verifyAccessToken(token: string) {
     try {
       const valid = JWT.verify(token, this.accessTokenSecret)
-
-      req.user = valid;
-      next()
+      return valid;
+      
     } catch (error) {
       throw error
     }

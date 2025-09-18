@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1, h2, h3, h4, h5, h6 {
+  /* Example styles */
+  font-weight: bold;
+  margin: 1em 0;
+}
+
+/* Or specific styling for Editor.js headers */
+
+
+/* Example of increasing specificity */
+h1 {
+  font-size: 2rem !important;
+}
+
+h2 {
+  font-size: 1.75rem !important;
+}
+
+h3 {
+  font-size: 1.5rem !important;
+}
+
+h4 {
+  font-size: 1.25rem !important;
+}
+
+h5 {
+  font-size: 1rem !important;
+}
+
+h6 {
+  font-size: 0.75rem !important;
+}
