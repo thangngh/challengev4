@@ -11,8 +11,27 @@ const ManagerDashboard = lazy(() => import("../pages/employee/dashboard"))
 
 const routes: RouteObject[] = [
   {
-    path: "/login",
+    path: "/owner-login",
     element: <Login />,
+    children: [
+      {
+        path: "/auth-phone"
+      },
+      {
+        path: "/access-code"
+      }
+    ]
+  },
+  {
+    path: "/employee-login",
+    children: [
+      {
+        path: "auth"
+      }
+    ]
+  },
+  {
+    path: "/employee/validate-email"
   },
   {
     path: "/manager",
@@ -22,6 +41,12 @@ const routes: RouteObject[] = [
         path: "dashboard",
         element: <ManagerDashboard />,
       },
+      {
+        path: "employee"
+      },
+      {
+        path: "contact-message"
+      }
     ]
   },
   {

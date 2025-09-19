@@ -21,6 +21,10 @@ export const authUser = async (req: Request, res: Response, next: NextFunction) 
   }
 }
 
+export const authOwner = async (req: Request, res: Response, next: NextFunction) => {}
+
+export const authEmployee = async (req: Request, res: Response, next: NextFunction) => {}
+
 export const cookie = (req: Request, res: Response, next: NextFunction) => {
     
 }

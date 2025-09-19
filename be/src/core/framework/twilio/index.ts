@@ -1,4 +1,5 @@
 import Twilio, { Twilio as TwilioClient } from 'twilio';
+import { LOGGER } from '../logger';
 
 class TwilioService {
   private static instance: TwilioService;
@@ -16,11 +17,16 @@ class TwilioService {
   }
 
   async sendSms(to: string, body: string) {
-    return this.client.messages.create({
-      body,
-      from: CONFIG.twilio.smsPhone,
-      to,
-    });
+    try {
+      return await this.client.messages.create({
+        body,
+        from: CONFIG.twilio.smsPhone,
+        to,
+      });
+    } catch (error) {
+      LOGGER.error('Failed to send SMS via Twilio', error);
+      throw error;
+    }
   }
 }
 

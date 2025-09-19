@@ -6,6 +6,6 @@ const schema = Joi.object({
     address: Joi.required(),
     email: Joi.required(),
     phoneNumber: Joi.required()
-})
+});
 
 export const CreateUserDTO = schema;

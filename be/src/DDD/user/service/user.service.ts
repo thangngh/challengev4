@@ -24,6 +24,12 @@ class UserService {
 
   async createUser(user: UserModel) {
 
+    const emailExists = await this.usersCollection.where("email", "==", user.email).limit(1).get();
+
+    if (emailExists.empty) {
+      return { status: 400, message: 'email already exists' }
+    }
+
     const verifyCode = generateCode(6);
     const body = {
       ...user,
@@ -39,7 +45,7 @@ class UserService {
 
         transporter.sendMail({
           from: `"My App" <${CONFIG.mail.user}>`,
-          to: 'jokerchamp25082000@gmail.com',
+          to: user.email,
           subject: "Chào mừng!",
           text: `Hello world: This is accessCode: ${verifyCode}`,
         })

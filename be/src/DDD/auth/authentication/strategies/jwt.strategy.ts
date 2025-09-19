@@ -24,29 +24,6 @@ class JwtStrategy {
     return JwtStrategy.instance;
   }
 
-  public async signAccessToken(userId: string): Promise<string> {
-    try {
-      const payload = {
-        userId
-      };
-
-      const options: SignOptions = {
-        expiresIn: this.accessTokenExpireTime as any,
-        issuer: this.tokenIssuer,
-      };
-
-      const accessToken = JWT.sign(
-        payload,
-        this.accessTokenSecret,
-        options,
-      )
-
-      return accessToken;
-    } catch (error) {
-      throw error;
-    }
-  }
-
   public async signToken(userId: string): Promise<{ accessToken: string; refreshToken: string }> {
     try {
       const payload = { userId };
@@ -74,13 +51,19 @@ class JwtStrategy {
     try {
       const valid = JWT.verify(token, this.accessTokenSecret)
       return valid;
-      
     } catch (error) {
-      throw error
+      throw error;
     }
   }
 
-  public async verifyRefreshToken(req: Request, res: Response, next: NextFunction) { }
+  public async verifyRefreshToken(token: string) {
+    try {
+      const valid = JWT.verify(token, this.refreshTokenSecret)
+      return valid;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default JwtStrategy.getInstance();
